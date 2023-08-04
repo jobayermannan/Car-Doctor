@@ -5,6 +5,7 @@ import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/Signup";
 import Checkout from "../Pages/Checkout/Checkout";
 import Booking from "../Pages/Booking/Booking";
+import PrivateRoute from "./PrivateRoute";
 
 
 
@@ -24,12 +25,12 @@ const router = createBrowserRouter([
           element:<SignUp></SignUp>
         },{
           path:"checkout/:id",
-          element: <Checkout></Checkout>,
-          loader:({params}) =>fetch (`http://localhost:5000/services/${params.id}`)
+          element: <PrivateRoute><Checkout></Checkout></PrivateRoute> ,
+          loader:({params}) =>fetch (`https://car-doctor-server-jobayermannan.vercel.app/services/${params.id}`)
         },
          {
            path:"bookings",
-           element:<Booking></Booking>
+           element:<PrivateRoute><Booking></Booking></PrivateRoute>
          }
         
       ]
